@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Bus Ride Home - Options</title>
+    <script type="text/javascript">
+      function save_opts(){
+        localStorage["homeaddr"] = document.getElementById('homeaddr').value;
+        localStorage["curaddr"] = document.getElementById('curaddr').value;
+
+        if (!home){
+          return;
+        } else{
+          document.getElementById('homeaddr').value = home;
+        }
+        var cur = localStorage["curaddr"];
+        if (!cur){
+          return;
+        } else{
+          document.getElementById('curaddr').value = cur;
+        }
+      }
+
+      function restore_opts(){
+        var home = localStorage["homeaddr"];
+        if (!home){
+          return;
+        } else{
+          document.getElementById('homeaddr').value = home;
+        }
+        var cur = localStorage["curaddr"];
+        if (!cur){
+          return;
+        } else{
+          document.getElementById('curaddr').value = cur;
+        }
+      }
+    </script>
+    <style type="text/css">
+      div{
+        padding:1em;
+      }
+    </style>
+  </head>
+  <body onload="restore_opts();">
+    <div id="home_address">
+      <label for="homeaddr">Home(Destination) Address:</label><br />
+      <input type="text" id="homeaddr">
+    </div>
+    <div id="current_address">
+      <label for="curaddr">Current(Starting) Address:</label><br />
+      <input type="text" id="curaddr">
+    </div>
+    <button onclick="save_opts()">Save</button>
+  </body>
+</html>

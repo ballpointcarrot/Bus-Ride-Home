@@ -1,0 +1,14 @@
+{
+  "name": "Bus Ride Home Extension",
+  "version": "0.1",
+  "description": "Provides a button to determine your best bus ride home via google maps.",
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "icon": "icon.png",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Bus Ride Home"
+  },
+  "permissions": [ "tabs",
+    "http://*.*/"]
+}

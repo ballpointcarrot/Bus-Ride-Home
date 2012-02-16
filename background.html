@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script type="text/javascript">
+  // Called when the user clicks on the browser action.
+    chrome.browserAction.onClicked.addListener(function(tab) {
+        d = new Date();
+        dt_day = d.getDate() >= 10 ? d.getDate().toString() : "0" + d.getDate().toString();
+        dt_mon = d.getMonth() >= 10 ? (d.getMonth()+1).toString() : "0" + (d.getMonth()+1).toString();
+        dt_yr = (d.getYear() - 100).toString();
+        dt_str = dt_mon + "%2F" + dt_day + "%2F" + dt_yr;
+
+        tm_hr = "";
+        tm_ap = "";
+        if(d.getHours() < 12){
+        tm_hr = d.getHours().toString();
+        tm_ap = "am";
+        } else{
+        tm_hr = (d.getHours()-12).toString();
+        tm_ap = "pm";
+        }
+        tm_min = d.getMinutes() < 10 ? "0" + d.getMinutes().toString() : d.getMinutes().toString();
+        tm_str = tm_hr + ":" + tm_min + tm_ap;
+        saddr = localStorage['curaddr'].replace(/\s/g,'+');
+        daddr = localStorage['homeaddr'].replace(/\s/g,'+');
+        maps_url = "http://maps.google.com/maps?saddr=" + saddr + "&daddr=" + daddr + "&mra=ltm&dirflg=r&ttype=dep&date=" + dt_str + "&time=" + tm_str + "&noexp=0&noal=0&sort=def&z=13&start=0";
+        chrome.tabs.create({url: maps_url});
+        });
+
+    chrome.browserAction.setBadgeBackgroundColor({color:[255, 255, 255, 0]});
+    </script>
+  </head>
+</html>
